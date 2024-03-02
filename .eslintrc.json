@@ -38,6 +38,7 @@
     "import/named": "off",
     "import/extensions": "off",
     "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off",
     "global-require": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "perfectionist/sort-named-imports": "off",
@@ -86,7 +87,8 @@
     "react/jsx-no-constructed-context-values": "off",
     "react/jsx-no-useless-fragment": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "testing-library/no-render-in-lifecycle": "off"
   },
   "settings": {
     "next": {
