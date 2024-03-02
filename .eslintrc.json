@@ -1,19 +1,28 @@
 {
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["react", "@typescript-eslint", "perfectionist"],
   "extends": [
     "airbnb",
     "next/core-web-vitals",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
     "plugin:prettier/recommended",
-    "prettier"
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:perfectionist/recommended-alphabetical"
   ],
-  "plugins": ["react", "simple-import-sort"],
   "rules": {
-    "no-unused-vars": "warn",
-    "no-param-reassign": "off",
-    "no-unreachable": "warn",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-explicit-any": "off",
+    "consistent-return": "off",
     "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-plusplus": "off",
     "no-restricted-exports": "off",
+    "no-shadow": "off",
+    "no-unused-vars": "off",
+    "no-unreachable": "warn",
+    "no-use-before-define": "off",
     "max-len": [
       "warn",
       {
@@ -31,33 +40,53 @@
     "import/prefer-default-export": "off",
     "global-require": "off",
     "jsx-a11y/anchor-is-valid": "off",
+    "perfectionist/sort-named-imports": "off",
+    "perfectionist/sort-imports": [
+      "error",
+      {
+        "type": "natural",
+        "order": "asc",
+        "groups": [
+          "type",
+          "react",
+          "nanostores",
+          ["builtin", "external"],
+          "internal-type",
+          "internal",
+          ["parent-type", "sibling-type", "index-type"],
+          ["parent", "sibling", "index"],
+          "side-effect",
+          "style",
+          "object",
+          "unknown"
+        ],
+        "custom-groups": {
+          "value": {
+            "react": ["react", "react-*"],
+            "nanostores": "@nanostores/**"
+          },
+          "type": {
+            "react": "react"
+          }
+        },
+        "newlines-between": "always",
+        "internal-pattern": [
+          "@/components/**",
+          "@/stores/**",
+          "@/pages/**",
+          "@/lib/**"
+        ]
+      }
+    ],
+    "prefer-template": "off",
     "react/button-has-type": "off",
     "react/function-component-definition": "off",
     "react/no-unstable-nested-components": "off",
     "react/require-default-props": "off",
     "react/jsx-no-constructed-context-values": "off",
+    "react/jsx-no-useless-fragment": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }],
-    "react/jsx-props-no-spreading": "off",
-    "simple-import-sort/exports": "error",
-    "simple-import-sort/imports": [
-      "error",
-      {
-        "groups": [
-          // Packages `react` related packages come first.
-          ["^react", "^@?\\w"],
-          // Internal packages.
-          ["^(@|components)(/.*|$)"],
-          // Side effect imports.
-          ["^\\u0000"],
-          // Parent imports. Put `..` last.
-          ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
-          // Other relative imports. Put same-folder imports and `.` last.
-          ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
-          // Style imports.
-          ["^.+\\.?(css)$"]
-        ]
-      }
-    ]
+    "react/jsx-props-no-spreading": "off"
   },
   "settings": {
     "next": {
